@@ -99,7 +99,7 @@ async def download_video(url: str, user_id: int) -> str:
         "merge_output_format": "mp4",
         "extractor_args": {
             "youtube": {
-                "player_client": ["android", "web", "ios"],
+                "player_client": ["web_safari", "web", "mweb"],
             }
         },
     }
@@ -124,7 +124,7 @@ async def download_audio(url: str, user_id: int) -> str:
         }],
         "extractor_args": {
             "youtube": {
-                "player_client": ["android", "web", "ios"],
+                "player_client": ["web_safari", "web", "mweb"],
             }
         },
     }
