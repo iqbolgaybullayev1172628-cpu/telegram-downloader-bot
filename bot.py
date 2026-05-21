@@ -91,12 +91,17 @@ async def run_ytdlp(ydl_opts: dict, url: str) -> str:
 async def download_video(url: str, user_id: int) -> str:
     output_template = str(DOWNLOAD_DIR / f"{user_id}_%(id)s.%(ext)s")
     ydl_opts = {
-        "format": "best",
+        "format": "best[height<=720]/best",
         "outtmpl": output_template,
         "noplaylist": True,
         "quiet": True,
         "no_warnings": True,
         "merge_output_format": "mp4",
+        "extractor_args": {
+            "youtube": {
+                "player_client": ["android", "web", "ios"],
+            }
+        },
     }
     cf = get_cookie_file(url)
     if cf:
@@ -117,6 +122,11 @@ async def download_audio(url: str, user_id: int) -> str:
             "preferredcodec": "mp3",
             "preferredquality": "192",
         }],
+        "extractor_args": {
+            "youtube": {
+                "player_client": ["android", "web", "ios"],
+            }
+        },
     }
     cf = get_cookie_file(url)
     if cf:
