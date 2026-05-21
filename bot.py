@@ -91,7 +91,7 @@ async def run_ytdlp(ydl_opts: dict, url: str) -> str:
 async def download_video(url: str, user_id: int) -> str:
     output_template = str(DOWNLOAD_DIR / f"{user_id}_%(id)s.%(ext)s")
     ydl_opts = {
-        "format": "best[filesize<50M]/best[height<=720]/best",
+        "format": "bestvideo[height<=720][ext=mp4]+bestaudio[ext=m4a]/best[height<=720]/best",
         "outtmpl": output_template,
         "noplaylist": True,
         "quiet": True,
